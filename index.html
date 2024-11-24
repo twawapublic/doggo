@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doggo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            flex-direction: column;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.2;
+            }
+        }
+
+        .logo {
+            margin-bottom: 20px; 
+        }
+
+        .rounded-container {
+            z-index: 1; 
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #5865f2, #3b82f6);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .button img {
+            width: 24px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .youtube {
+            background: linear-gradient(135deg, #ff0000, #e52d27);
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" alt="Logo" class="logo">
+
+    <div id="snow"></div>
+
+    <div class="rounded-container">
+        <h1>Doggo Page</h1>
+        <p>The Best utility Tool,Make By Eqhit</p>
+        <a href="https://discord.gg/doggo" class="button" target="_blank">
+            <img src="discord.png" alt="Discord Logo">
+            Discord
+        </a>
+        <a href="https://www.youtube.com/@Twawav2" class="button youtube" target="_blank">
+            <img src="youtube.png" alt="YouTube Logo">
+            YouTube
+        </a>
+    </div>
+
+    <script>
+        // 雪のフレークを作る
+        const snowContainer = document.getElementById('snow');
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            const size = Math.random() * 5 + 5; 
+            const left = Math.random() * 100; 
+            const duration = Math.random() * 5 + 5; 
+            const delay = Math.random() * -5; 
+
+            snowflake.classList.add('snowflake');
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${left}vw`;
+            snowflake.style.animationDuration = `${duration}s`;
+            snowflake.style.animationDelay = `${delay}s`;
+
+            snowContainer.appendChild(snowflake);
+
+            snowflake.addEventListener('animationend', () => {
+                snowflake.remove();
+            });
+        }
+
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>
